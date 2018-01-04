@@ -44,9 +44,9 @@ for x in file_ls:
         sc = ls[2:]
         sid = ls[0]
         #print(sid, sc)
-        score_d[sid]['score'].extend(sc)
+        if sid in score_d: score_d[sid]['score'].extend(sc)
+        else: print('No student ID', sid)
 
-fs.close()
 combined_file = open('combined.csv', 'w', encoding='utf-8')
 print(','.join(header), file=combined_file)
 for sid, name in std_t:
@@ -54,5 +54,5 @@ for sid, name in std_t:
     for sc in score_d[sid]['score']:
         print(','+sc,end='', file=combined_file)
     print('', file=combined_file)
-
+combined_file.close()
         
